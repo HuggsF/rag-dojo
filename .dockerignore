@@ -1,0 +1,61 @@
+# Git
+.git/
+.gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+venv/
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment (lives inside pod, not in repo)
+.env
+.env.local
+.env.*.local
+
+# Data (downloaded at runtime inside pod, persisted via PVC)
+data/
+
+# Coverage and test artifacts
+htmlcov/
+.coverage
+.coverage.*
+coverage.json
+coverage.xml
+*.cover
+.pytest_cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Claude Code
+.claude/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Docker (avoid recursive context)
+Dockerfile
+docker-compose*.yml
+
+# K8s manifests (not needed inside container)
+k8s/
+
+# Documentation (not needed at runtime)
+README.md
+LICENSE

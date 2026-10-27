@@ -1,0 +1,57 @@
+# Spiral 04 — L1 Pattern Detector Configuration
+# Each pattern: name, regex, severity (low/medium/high/critical), status mapping
+#
+# Analogy for a C dev:
+# This is your /etc/fail2ban/filter.d/ — regex signatures for known problems.
+# When output matches a pattern, it gets classified automatically.
+
+patterns:
+  - name: disk_full
+    regex: "(?i)(no space left on device|disk full|ENOSPC)"
+    severity: critical
+    status: fail
+
+  - name: test_failure
+    regex: "(?i)(FAILED|ERRORS?\\s+\\d+|AssertionError|test.*fail)"
+    severity: high
+    status: fail
+
+  - name: ssl_expiring
+    regex: "(?i)(ssl.*expir|certificate.*expir|cert.*invalid)"
+    severity: high
+    status: fail
+
+  - name: low_coverage
+    regex: "(?i)(coverage.*(?:below|under|<)\\s*\\d+%|\\d+%\\s*coverage)"
+    severity: medium
+    status: partial
+
+  - name: stale_docs
+    regex: "(?i)(stale|outdated|not.*fresh|last.*(?:update|index).*(?:days?|hours?)\\s+ago)"
+    severity: medium
+    status: fail
+
+  - name: rate_limited
+    regex: "(?i)(rate.?limit|too many requests|429|quota.*exceeded)"
+    severity: high
+    status: fail
+
+  - name: connection_error
+    regex: "(?i)(connection.*(?:refused|timeout|reset)|ECONNREFUSED|ETIMEDOUT)"
+    severity: high
+    status: fail
+
+  - name: memory_warning
+    regex: "(?i)(out of memory|OOM|memory.*(?:exceed|limit|warning)|MemoryError)"
+    severity: critical
+    status: fail
+
+  - name: deprecation
+    regex: "(?i)(deprecat(?:ed|ion)|will be removed)"
+    severity: low
+    status: partial
+
+  - name: success_marker
+    regex: "(?i)(all.*pass|success|complete|✓|OK\\b|healthy)"
+    severity: low
+    status: ok

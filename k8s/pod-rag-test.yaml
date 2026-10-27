@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: rag-test
+  namespace: default
+  labels:
+    app: rag-dojo
+    component: rag-test
+spec:
+  containers:
+    - name: rag
+      image: rag-dojo:local
+      imagePullPolicy: Never
+      command: ["sleep", "infinity"]
+      envFrom:
+        - configMapRef:
+            name: rag-dojo-config
+        - secretRef:
+            name: rag-dojo-secrets
+      volumeMounts:
+        - name: rag-data
+          mountPath: /app/data
+      livenessProbe:
+        exec:
+          command: ["python", "-c", "import spiral_01_chunks.config"]
+        initialDelaySeconds: 30
+        periodSeconds: 60
+        timeoutSeconds: 10
+        failureThreshold: 3
+      readinessProbe:
+        exec:
+          command: ["python", "scripts/health_check.py"]
+        initialDelaySeconds: 30
+        periodSeconds: 30
+        timeoutSeconds: 30
+        failureThreshold: 5
+      resources:
+        requests:
+          memory: "512Mi"
+          cpu: "250m"
+        limits:
+          memory: "2Gi"
+          cpu: "1"
+  volumes:
+    - name: rag-data
+      persistentVolumeClaim:
+        claimName: rag-data
+  restartPolicy: Always

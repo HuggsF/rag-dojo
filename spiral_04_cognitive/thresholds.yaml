@@ -1,0 +1,49 @@
+# Spiral 04 — L2 Threshold Checker Configuration
+# Each threshold: metric name, warning limit, critical limit, unit, direction
+#
+# Analogy for a C dev:
+# These are your ulimits — soft limit = warning, hard limit = critical.
+# direction: "max" = value must stay BELOW limit, "min" = value must stay ABOVE limit.
+
+thresholds:
+  disk_usage_pct:
+    warning: 80
+    critical: 95
+    unit: "%"
+    direction: max
+
+  memory_usage_pct:
+    warning: 75
+    critical: 90
+    unit: "%"
+    direction: max
+
+  response_time_ms:
+    warning: 2000
+    critical: 5000
+    unit: "ms"
+    direction: max
+
+  coverage_pct:
+    warning: 80
+    critical: 60
+    unit: "%"
+    direction: min
+
+  stale_cache_hours:
+    warning: 24
+    critical: 72
+    unit: "hours"
+    direction: max
+
+  error_rate_pct:
+    warning: 5
+    critical: 15
+    unit: "%"
+    direction: max
+
+  index_freshness_hours:
+    warning: 48
+    critical: 168
+    unit: "hours"
+    direction: max
