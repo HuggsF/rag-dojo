@@ -7,7 +7,7 @@ sentence-transformers>=2.3.1
 langchain-text-splitters>=0.0.1
 
 # LLM Provider (Groq — free tier)
-groq>=0.4.1
+groq>=1.7.0
 
 # Graph (Spiral 2+)
 neo4j>=5.15.0
