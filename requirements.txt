@@ -17,7 +17,7 @@ pyvis>=0.3.2
 python-dotenv>=1.0.0
 httpx>=0.27.0
 tiktoken>=0.5.2
-rich>=13.7.0
+rich>=15.0.0
 PyYAML>=6.0
 
 # Testing & Quality
